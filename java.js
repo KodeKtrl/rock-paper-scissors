@@ -5,7 +5,7 @@ let computerScore = 0;
 
 
 
-function computerChoice(choice){
+function getComputerChoice(choice){
     randomNumber = Math.floor(Math.random() * 3)
     if (randomNumber == 0){
         choice = "rock"
@@ -19,23 +19,17 @@ function computerChoice(choice){
     return choice
 }
 
-function playerChoice(choice){
-    choice = prompt("1. Rock, 2. Paper or 3. Scissors?")
-    if (choice == 1){
-        choice = "rock"
-    }
-    else if (choice == 2){
-        choice = "paper"
-    }
-    else if(choice == 3){
-        choice = "scissors"
-    }
-    else{
-        choice = "unknown value"
-    }
-    return choice
-    
+function getPlayerChoice(choice){
+    choice = prompt("Rock, Paper or Scissors?:")
 }
 
-console.log(playerChoice())
-console.log(computerChoice())
+function playRound(humanChoice, ComputerChoice){
+    console.log("You lose! Paper is king.")
+    computerScore += 1;
+}
+
+for (i = 0; i <5; i++){
+    playRound()
+}
+
+console.log(computerScore)
