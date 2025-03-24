@@ -2,7 +2,8 @@ console.log("test connection")
 
 let playerScore = 0;
 let computerScore = 0;
-
+let getPlayerChoice = null;
+let rounds = 0;
 
 
 function getComputerChoice(computerChoice){
@@ -19,9 +20,8 @@ function getComputerChoice(computerChoice){
     return computerChoice
 }
 
-let getPlayerChoice = null;
-
 function playRound(){
+    if (rounds >=5) return;
     const humanChoice = getPlayerChoice
     const computerChoice = getComputerChoice()
    
@@ -31,19 +31,22 @@ function playRound(){
         humanChoice == "scissors" && computerChoice == "rock"
     ){
         score.textContent = (`You chose ${humanChoice}, computer chose ${computerChoice}. Computer wins.`);
-        computerScore ++;
+        computerScore++;
     }
     else if (humanChoice == computerChoice){
         score.textContent = (`${humanChoice} and ${computerChoice}. It's a tie.`)
     }
     else{
         score.textContent = (`You chose ${humanChoice}, computer chose ${computerChoice}. You win.\n`);
-        playerScore ++;
+        playerScore++;
     }
+    scoreTracker.textContent = `PLayer score: ${playerScore} Computer score: ${computerScore}`
+    rounds++;
 }
 
 const choices = document.querySelector('#choices')
 const score = document.querySelector('#results')
+const scoreTracker = document.querySelector('#scoreTracker')
 
 choices.addEventListener('click', (event) =>{
     let target = event.target;
@@ -63,3 +66,5 @@ choices.addEventListener('click', (event) =>{
             break;
     }
 });
+
+scoreTracker.textContent = `PLayer score: ${playerScore} Computer score: ${computerScore}`
