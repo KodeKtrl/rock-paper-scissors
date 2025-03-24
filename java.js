@@ -30,23 +30,20 @@ function playRound(){
         humanChoice == "paper" && computerChoice == "scissors"||
         humanChoice == "scissors" && computerChoice == "rock"
     ){
-        console.log(`You chose ${humanChoice}, computer chose ${computerChoice}. Computer wins.`);
-        computerScore += 1;
+        score.textContent += (`You chose ${humanChoice}, computer chose ${computerChoice}. Computer wins.`);
+        computerScore ++;
     }
     else if (humanChoice == computerChoice){
-        console.log("it is a tie!")
-        console.log(`${humanChoice} and ${computerChoice}`)
+        score.textContent += (`${humanChoice} and ${computerChoice}. It's a tie.`)
     }
     else{
-        console.log(`You chose ${humanChoice}, computer chose${computerChoice}. You win.`);
-        playerScore += 1;
+        score.textContent += (`You chose ${humanChoice}, computer chose ${computerChoice}. You win.\n`);
+        playerScore ++;
     }
 }
 
-const rock = document.querySelector('#rock')
-const paper = document.querySelector("#paper")
-const scissors = document.querySelector("#scissors")
 const choices = document.querySelector('#choices')
+const score = document.querySelector('#results')
 
 choices.addEventListener('click', (event) =>{
     let target = event.target;
