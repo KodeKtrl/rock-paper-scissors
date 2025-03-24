@@ -30,14 +30,14 @@ function playRound(){
         humanChoice == "paper" && computerChoice == "scissors"||
         humanChoice == "scissors" && computerChoice == "rock"
     ){
-        score.textContent += (`You chose ${humanChoice}, computer chose ${computerChoice}. Computer wins.`);
+        score.textContent = (`You chose ${humanChoice}, computer chose ${computerChoice}. Computer wins.`);
         computerScore ++;
     }
     else if (humanChoice == computerChoice){
-        score.textContent += (`${humanChoice} and ${computerChoice}. It's a tie.`)
+        score.textContent = (`${humanChoice} and ${computerChoice}. It's a tie.`)
     }
     else{
-        score.textContent += (`You chose ${humanChoice}, computer chose ${computerChoice}. You win.\n`);
+        score.textContent = (`You chose ${humanChoice}, computer chose ${computerChoice}. You win.\n`);
         playerScore ++;
     }
 }
