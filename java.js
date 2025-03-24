@@ -3,8 +3,31 @@ console.log("test connection")
 let playerScore = 0;
 let computerScore = 0;
 let getPlayerChoice = null;
-let rounds = 0;
 
+const choices = document.querySelector('#choices')
+const score = document.querySelector('#results')
+const scoreTracker = document.querySelector('#scoreTracker')
+
+scoreTracker.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`
+
+choices.addEventListener('click', (event) =>{
+    let target = event.target;
+
+    switch(target.id){
+        case 'rock':
+            getPlayerChoice = 'rock'
+            playGame()
+            break;
+        case 'paper':
+            getPlayerChoice = 'paper'
+            playGame()
+            break;
+        case 'scissors':
+            getPlayerChoice = 'scissors'
+            playGame()
+            break;
+    }
+});
 
 function getComputerChoice(computerChoice){
     randomNumber = Math.floor(Math.random() * 3)
@@ -21,11 +44,11 @@ function getComputerChoice(computerChoice){
 }
 
 function playRound(){
-    if (rounds >=5) return;
+
     const humanChoice = getPlayerChoice
     const computerChoice = getComputerChoice()
-   
 
+    
     if (humanChoice == "rock" && computerChoice == "paper" ||
         humanChoice == "paper" && computerChoice == "scissors"||
         humanChoice == "scissors" && computerChoice == "rock"
@@ -40,31 +63,29 @@ function playRound(){
         score.textContent = (`You chose ${humanChoice}, computer chose ${computerChoice}. You win.\n`);
         playerScore++;
     }
-    scoreTracker.textContent = `PLayer score: ${playerScore} Computer score: ${computerScore}`
-    rounds++;
+    scoreTracker.textContent = `Player score: ${playerScore} Computer score: ${computerScore} ` 
 }
 
-const choices = document.querySelector('#choices')
-const score = document.querySelector('#results')
-const scoreTracker = document.querySelector('#scoreTracker')
-
-choices.addEventListener('click', (event) =>{
-    let target = event.target;
-
-    switch(target.id){
-        case 'rock':
-            getPlayerChoice = 'rock'
-            playRound()
-            break;
-        case 'paper':
-            getPlayerChoice = 'paper'
-            playRound()
-            break;
-        case 'scissors':
-            getPlayerChoice = 'scissors'
-            playRound()
-            break;
+function playGame(){
+    if(playerScore < 5 && computerScore < 5){
+        playRound()
     }
-});
+    else if (playerScore > computerScore){
+        score.textContent = `You won!`
+        score.appendChild(playAgain)
+    }
+    else{
+        score.textContent = `Computer won!`
+        score.appendChild(playAgain)
+    }
+}
 
-scoreTracker.textContent = `PLayer score: ${playerScore} Computer score: ${computerScore}`
+const playAgain = document.createElement('button')
+
+playAgain.textContent = "Play again?"
+
+playAgain.addEventListener('click', ()=>{
+    playerScore = 0;
+    computerScore = 0;
+    scoreTracker.textContent = `Score reset. Choose to play again!`
+})
